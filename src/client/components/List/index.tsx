@@ -15,12 +15,10 @@ export default function List() {
 
   console.log(data);
   return (
-    <div className="text-white">
-      <ul id="data">
-        {data.results.map((item: any, key: string) => (
-          <li key={key}>{item.name}</li>
-        ))}
-      </ul>
-    </div>
+    <ul id="data">
+      {data.results.map((item: any, key: string) => (
+        <li key={key}>{item.name}</li>
+      ))}
+    </ul>
   );
 }
