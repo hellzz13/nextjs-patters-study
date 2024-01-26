@@ -1,4 +1,4 @@
-import List from "@/src/client/components/List";
+import List from "@/src/components/List";
 import React from "react";
 
 export default function Home() {

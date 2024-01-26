@@ -1,23 +1,27 @@
 "use client";
 
-import useSWR from "swr";
-import Loading from "../Loading";
 import Image from "next/image";
+import { useRequest } from "@/src/hook/server/useRequest";
+import Loading from "../Loading";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const api = "https://rickandmortyapi.com/api/character";
 
-export default function List() {
-  const { data, error, isLoading } = useSWR(api, fetcher);
+interface CharactersProps {
+  results: [{ id: string; name: string; image: string }];
+}
 
-  if (error) return "An error has occurred.";
+export default function List() {
+  const { data, error, isLoading } = useRequest<CharactersProps>(api, fetcher);
+
+  if (error) return "Ocorreu um erro!";
   if (isLoading) return <Loading />;
 
   console.log(data);
   return (
     <div className="flex flex-wrap gap-2">
-      {data.results.map((item: any) => (
+      {data?.results.map((item) => (
         <div
           key={item.id}
           className="w-32 flex flex-col justify-center items-center text-center cursor-pointer"
