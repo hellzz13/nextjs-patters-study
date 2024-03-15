@@ -33,7 +33,7 @@ export default function List() {
             width={100}
             height={100}
             // loading="lazy"
-            priority
+            priority={false}
             placeholder="empty"
           />
           <p>{item.name}</p>
